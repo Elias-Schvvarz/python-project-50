@@ -1,0 +1,18 @@
+from argparse import ArgumentParser
+
+def parse_args():
+    parser = ArgumentParser(
+        description="Generate diff between two files"
+    )
+    parser.add_argument('first_file', type=str, help='path to first file')
+    parser.add_argument('second_file', type=str, help='path to second file')
+    parser.add_argument(
+        '-f', '--format',
+        default='stylish',
+        help='set output format (default: stylish)'
+    )
+    args = parser.parse_args()
+    return args.first_file, args.second_file
+
+if __name__ == '__main__':
+    parse_args()
