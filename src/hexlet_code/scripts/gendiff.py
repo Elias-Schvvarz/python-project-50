@@ -11,8 +11,4 @@ def parse_args():
         default='stylish',
         help='set output format (default: stylish)'
     )
-    args = parser.parse_args()
-    return args.first_file, args.second_file
-
-if __name__ == '__main__':
-    parse_args()
+    return parser.parse_args()
