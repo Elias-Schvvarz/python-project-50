@@ -1,17 +1,11 @@
-from hexlet_code.scripts.gendiff import parse_args
-from hexlet_code.parser import parse_data
+from hexlet_code.scripts.cli import parse_args
+from hexlet_code.gendiff import generate_diff
 
 
 def main():
     args = parse_args()
-
-    # Читаем и парсим файлы через отдельный модуль
-    data1 = parse_data(args.first_file)
-    data2 = parse_data(args.second_file)
-
-    # В дальнейшем здесь будет вызов функции сравнения (diff)
-    print("Parsed data 1:", data1)
-    print("Parsed data 2:", data2)
+    diff = generate_diff(args.first_file, args.second_file)
+    print(diff)
 
 
 if __name__ == '__main__':
