@@ -3,7 +3,6 @@ import os
 import pytest
 
 from hexlet_code import generate_diff
-
 from hexlet_code.parser import parse_data
 
 
