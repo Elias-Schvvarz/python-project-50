@@ -22,6 +22,8 @@ packages = ["hexlet_code"]
 [dependency-groups]
 dev = [
     "ruff>=0.17.4",
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
 ]
 
 [tool.coverage.report]
