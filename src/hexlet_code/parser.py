@@ -1,6 +1,8 @@
 import json
 import os
 
+import yaml
+
 
 def parse_data(file_path):
     _, ext = os.path.splitext(file_path)
@@ -10,5 +12,7 @@ def parse_data(file_path):
 
     if ext in ('.json', '.JSON'):
         return json.loads(content)
+    elif ext in ['.yml', '.yaml']:
+        return yaml.safe_load(content)
 
     raise ValueError(f"Unsupported file format: {ext}")

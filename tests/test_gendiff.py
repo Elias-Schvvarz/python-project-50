@@ -24,10 +24,10 @@ def read_file(file_name):
         return f.read().strip()
 
 
-@pytest.mark.parametrize('format_name', ['stylish'])
+@pytest.mark.parametrize('format_name', ['json', 'yml'])
 def test_gendiff(format_name):
-    file1 = get_fixture_path('file1.json')
-    file2 = get_fixture_path('file2.json')
+    file1 = get_fixture_path(f'file1.{format_name}')
+    file2 = get_fixture_path(f'file2.{format_name}')
     expected = read_file('expected.txt')
 
     result = generate_diff(file1, file2)

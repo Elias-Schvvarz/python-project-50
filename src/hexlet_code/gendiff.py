@@ -1,9 +1,4 @@
-import json
-
-
-def parse_file(file_path):
-    with open(file_path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+from hexlet_code.parser import parse_data
 
 
 def stringify(value):
@@ -13,8 +8,8 @@ def stringify(value):
 
 
 def generate_diff(file_path1, file_path2):
-    data1 = parse_file(file_path1)
-    data2 = parse_file(file_path2)
+    data1 = parse_data(file_path1)
+    data2 = parse_data(file_path2)
 
     keys = sorted(data1.keys() | data2.keys())
 
