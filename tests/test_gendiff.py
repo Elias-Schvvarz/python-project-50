@@ -1,5 +1,7 @@
 import os
+
 import pytest
+
 from hexlet_code import generate_diff
 
 
