@@ -26,6 +26,14 @@ dev = [
     "pytest-cov>=5.0.0",
 ]
 
+[tool.coverage.run]
+branch = true
+source = ["hexlet_code"]
+omit = [
+    "*/scripts/*",
+    "*/main.py",
+]
+
 [tool.coverage.report]
 fail_under = 80
 show_missing = true

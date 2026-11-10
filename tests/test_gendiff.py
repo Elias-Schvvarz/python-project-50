@@ -4,6 +4,15 @@ import pytest
 
 from hexlet_code import generate_diff
 
+from hexlet_code.parser import parse_data
+
+
+def test_parse_data():
+    file_path = get_fixture_path('file1.json')
+    data = parse_data(file_path)
+    assert isinstance(data, dict)
+    assert data['host'] == 'hexlet.io'
+
 
 def get_fixture_path(file_name):
     current_dir = os.path.dirname(__file__)
