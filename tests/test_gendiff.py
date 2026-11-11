@@ -32,3 +32,13 @@ def test_gendiff(format_name):
 
     result = generate_diff(file1, file2)
     assert result.strip() == expected
+
+
+@pytest.mark.parametrize('format_name', ['json', 'yml'])
+def test_gendiff_nested(format_name):
+    file1 = get_fixture_path(f'nested_file1.{format_name}')
+    file2 = get_fixture_path(f'nested_file2.{format_name}')
+    expected = read_file('expected_nested.txt')
+
+    result = generate_diff(file1, file2)
+    assert result.strip() == expected

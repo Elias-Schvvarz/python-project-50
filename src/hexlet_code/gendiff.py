@@ -1,29 +1,15 @@
 from hexlet_code.parser import parse_data
+from hexlet_code.differ import build_diff
+from hexlet_code.formatters import stylish
 
 
-def stringify(value):
-    if isinstance(value, bool):
-        return str(value).lower()
-    return value
-
-
-def generate_diff(file_path1, file_path2):
+def generate_diff(file_path1, file_path2, format_name='stylish'):
     data1 = parse_data(file_path1)
     data2 = parse_data(file_path2)
 
-    keys = sorted(data1.keys() | data2.keys())
+    ast = build_diff(data1, data2)
 
-    result = ['{']
-    for key in keys:
-        if key not in data1:
-            result.append(f'  + {key}: {stringify(data2[key])}')
-        elif key not in data2:
-            result.append(f'  - {key}: {stringify(data1[key])}')
-        elif data1[key] == data2[key]:
-            result.append(f'    {key}: {stringify(data1[key])}')
-        else:
-            result.append(f'  - {key}: {stringify(data1[key])}')
-            result.append(f'  + {key}: {stringify(data2[key])}')
-    result.append('}')
+    if format_name == 'stylish':
+        return stylish.render(ast)
 
-    return '\n'.join(result)
+    raise ValueError(f"Unknown format: {format_name}")
