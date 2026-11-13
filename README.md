@@ -34,5 +34,10 @@ https://asciinema.org/a/UV0F7M2OEWUonOTm
 
 https://asciinema.org/a/L0WDx8KqH5dALfRA
 
+### Сравнение вложенных файлов в формате JSON
+
+https://asciinema.org/a/YaMMP4HNoDHKIXXn
+
+
 <!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
 
