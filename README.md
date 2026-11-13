@@ -30,5 +30,9 @@ https://asciinema.org/connect/a5ff948b-bfcc-413a-95df-1fbe6af4450a
 
 https://asciinema.org/a/UV0F7M2OEWUonOTm
 
+### Сравнение вложенных файлов в формате plain
+
+https://asciinema.org/a/L0WDx8KqH5dALfRA
+
 <!-- Добавьте примеры запуска и запись asciinema — именно это смотрит работодатель -->
 

@@ -1,3 +1,4 @@
+import json
 import os
 
 import pytest
@@ -42,3 +43,14 @@ def test_gendiff_nested(format_name):
 
     result = generate_diff(file1, file2)
     assert result.strip() == expected
+
+
+def test_generate_diff_json():
+    file1 = 'tests/test_data/nested_file1.json'
+    file2 = 'tests/test_data/nested_file2.json'
+
+    result = generate_diff(file1, file2, 'json')
+
+    parsed_json = json.loads(result)
+    assert isinstance(parsed_json, list)
+    assert len(parsed_json) > 0
