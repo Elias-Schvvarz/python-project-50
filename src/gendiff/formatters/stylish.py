@@ -1,27 +1,23 @@
-def format_value(value):
-    return f' {value}' if value != '' else ''
-
-
 def stringify(value, depth):
-    if not isinstance(value, dict):
-        if isinstance(value, bool):
-            return str(value).lower()
-        if value is None:
-            return 'null'
-        return str(value)
+    if isinstance(value, dict):
+        indent_size = 4
+        current_indent = ' ' * ((depth + 1) * indent_size)
+        bracket_indent = ' ' * (depth * indent_size)
 
-    indent_size = 4
-    current_indent = ' ' * ((depth + 1) * indent_size)
-    bracket_indent = ' ' * (depth * indent_size)
+        lines = ['{']
+        for key, val in value.items():
+            formatted_val = stringify(val, depth + 1)
+            lines.append(f'{current_indent}{key}: {formatted_val}')
+        lines.append(bracket_indent + '}')
+        return '\n'.join(lines)
 
-    lines = ['{']
-    for key, val in value.items():
-        formatted_val = stringify(val, depth + 1)
-        suffix = f' {formatted_val}' if formatted_val != '' else ''
-        lines.append(f'{current_indent}{key}:{suffix}')
-
-    lines.append(bracket_indent + '}')
-    return '\n'.join(lines)
+    if isinstance(value, bool):
+        return str(value).lower()
+    if value is None:
+        return 'null'
+    if value == '':
+        return ''
+    return str(value)
 
 
 def render(ast, depth=1):
@@ -37,28 +33,28 @@ def render(ast, depth=1):
 
         if node_type == 'added':
             val = stringify(node['value'], depth)
-            suffix = f' {val}' if val != '' else ''
-            lines.append(f'{current_indent}+ {key}:{suffix}')
+            val_str = f' {val}' if val != '' else ''
+            lines.append(f'{current_indent}+ {key}:{val_str}')
 
         elif node_type == 'deleted':
             val = stringify(node['value'], depth)
-            suffix = f' {val}' if val != '' else ''
-            lines.append(f'{current_indent}- {key}:{suffix}')
+            val_str = f' {val}' if val != '' else ''
+            lines.append(f'{current_indent}- {key}:{val_str}')
 
         elif node_type == 'unchanged':
             val = stringify(node['value'], depth)
-            suffix = f' {val}' if val != '' else ''
-            lines.append(f'{current_indent}  {key}:{suffix}')
+            val_str = f' {val}' if val != '' else ''
+            lines.append(f'{current_indent}  {key}:{val_str}')
 
         elif node_type == 'changed':
             old_val = stringify(node['old_value'], depth)
             new_val = stringify(node['value'], depth)
 
-            old_suffix = f' {old_val}' if old_val != '' else ''
-            new_suffix = f' {new_val}' if new_val != '' else ''
+            old_str = f' {old_val}' if old_val != '' else ''
+            new_str = f' {new_val}' if new_val != '' else ''
 
-            lines.append(f'{current_indent}- {key}:{old_suffix}')
-            lines.append(f'{current_indent}+ {key}:{new_suffix}')
+            lines.append(f'{current_indent}- {key}:{old_str}')
+            lines.append(f'{current_indent}+ {key}:{new_str}')
 
         elif node_type == 'nested':
             children_str = render(node['children'], depth + 1)
