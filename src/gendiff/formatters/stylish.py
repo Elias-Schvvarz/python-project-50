@@ -15,8 +15,6 @@ def stringify(value, depth):
         return str(value).lower()
     if value is None:
         return 'null'
-    if value == '':
-        return ''
     return str(value)
 
 
@@ -33,28 +31,35 @@ def render(ast, depth=1):
 
         if node_type == 'added':
             val = stringify(node['value'], depth)
-            val_str = f' {val}' if val != '' else ''
-            lines.append(f'{current_indent}+ {key}:{val_str}')
+            # Если значение — это пустая строка, выводим без пробела после двоеточия
+            if node['value'] == '':
+                lines.append(f'{current_indent}+ {key}:')
+            else:
+                lines.append(f'{current_indent}+ {key}: {val}')
 
         elif node_type == 'deleted':
             val = stringify(node['value'], depth)
-            val_str = f' {val}' if val != '' else ''
-            lines.append(f'{current_indent}- {key}:{val_str}')
+            if node['value'] == '':
+                lines.append(f'{current_indent}- {key}:')
+            else:
+                lines.append(f'{current_indent}- {key}: {val}')
 
         elif node_type == 'unchanged':
             val = stringify(node['value'], depth)
-            val_str = f' {val}' if val != '' else ''
-            lines.append(f'{current_indent}  {key}:{val_str}')
+            if node['value'] == '':
+                lines.append(f'{current_indent}  {key}:')
+            else:
+                lines.append(f'{current_indent}  {key}: {val}')
 
         elif node_type == 'changed':
             old_val = stringify(node['old_value'], depth)
             new_val = stringify(node['value'], depth)
 
-            old_str = f' {old_val}' if old_val != '' else ''
-            new_str = f' {new_val}' if new_val != '' else ''
+            old_str = f': {old_val}' if node['old_value'] != '' else ':'
+            new_str = f': {new_val}' if node['value'] != '' else ':'
 
-            lines.append(f'{current_indent}- {key}:{old_str}')
-            lines.append(f'{current_indent}+ {key}:{new_str}')
+            lines.append(f'{current_indent}- {key}{old_str}')
+            lines.append(f'{current_indent}+ {key}{new_str}')
 
         elif node_type == 'nested':
             children_str = render(node['children'], depth + 1)
