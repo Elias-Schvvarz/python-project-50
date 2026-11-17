@@ -35,28 +35,22 @@ def render(ast, depth=1):
 
         if node_type == 'added':
             val = stringify(node['value'], depth)
-            suffix = f' {val}' if val else ''
-            lines.append(f'{current_indent}+ {key}:{suffix}')
+            lines.append(f'{current_indent}+ {key}: {val}')
 
         elif node_type == 'deleted':
             val = stringify(node['value'], depth)
-            suffix = f' {val}' if val else ''
-            lines.append(f'{current_indent}- {key}:{suffix}')
+            lines.append(f'{current_indent}- {key}: {val}')
 
         elif node_type == 'unchanged':
             val = stringify(node['value'], depth)
-            suffix = f' {val}' if val else ''
-            lines.append(f'{current_indent}  {key}:{suffix}')
+            lines.append(f'{current_indent}  {key}: {val}')
 
         elif node_type == 'changed':
             old_val = stringify(node['old_value'], depth)
             new_val = stringify(node['value'], depth)
 
-            old_suffix = f' {old_val}' if old_val else ''
-            new_suffix = f' {new_val}' if new_val else ''
-
-            lines.append(f'{current_indent}- {key}:{old_suffix}')
-            lines.append(f'{current_indent}+ {key}:{new_suffix}')
+            lines.append(f'{current_indent}- {key}: {old_val}')
+            lines.append(f'{current_indent}+ {key}: {new_val}')
 
         elif node_type == 'nested':
             children_str = render(node['children'], depth + 1)
