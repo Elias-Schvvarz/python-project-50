@@ -3,8 +3,8 @@ import os
 
 import pytest
 
-from hexlet_code.gendiff import generate_diff
-from hexlet_code.parser import parse_data
+from gendiff.gendiff import generate_diff
+from gendiff.parser import parse_data
 
 
 def test_parse_data():

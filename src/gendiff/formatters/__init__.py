@@ -1,5 +1,5 @@
-from hexlet_code.formatters import json as json_formatter
-from hexlet_code.formatters import plain, stylish
+from gendiff.formatters import json as json_formatter
+from gendiff.formatters import plain, stylish
 
 
 def format_diff(ast, format_name='stylish'):

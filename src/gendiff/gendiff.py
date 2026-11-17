@@ -1,6 +1,6 @@
-from hexlet_code.differ import build_diff
-from hexlet_code.formatters import format_diff
-from hexlet_code.parser import parse_data
+from gendiff.differ import build_diff
+from gendiff.formatters import format_diff
+from gendiff.parser import parse_data
 
 
 def generate_diff(file_path1, file_path2, format_name='stylish'):
