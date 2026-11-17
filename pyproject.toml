@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-gendiff = "hexlet_code.scripts.main:main"
+gendiff = "gendiff.scripts.main:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -30,7 +30,7 @@ dev = [
 
 [tool.coverage.run]
 branch = true
-source = ["hexlet_code"]
+source = ["gendiff"]
 omit = [
     "*/scripts/*",
     "*/main.py",
