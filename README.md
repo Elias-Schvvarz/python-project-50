@@ -13,6 +13,7 @@
 
 ## Установка
 
+make install
 <!-- Опишите установку: клонирование, зависимости, переменные окружения -->
 
 ```bash
@@ -24,7 +25,7 @@ cd python-project-50
 
 ### Простое сравнение двух файлов (YAML/JSON):
 
-https://asciinema.org/connect/a5ff948b-bfcc-413a-95df-1fbe6af4450a
+https://asciinema.org/a/96L4btrCewrtdUM9
 
 ### Сравнение вложенных файлов
 

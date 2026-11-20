@@ -1,5 +1,5 @@
 install:
-	uv pip install -e .
+	uv sync
 
 lint:
 	uv run ruff check .
